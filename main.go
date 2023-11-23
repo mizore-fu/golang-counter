@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 type Count struct {
@@ -17,6 +18,8 @@ func main() {
 	}
 
 	e := echo.New()
+	e.Use(middleware.CORS())
+
 	e.GET("/count", GetCount)
 	e.PUT("/countup", IncreaseCount)
 	e.PUT("/countdown", DecreaseCount)
